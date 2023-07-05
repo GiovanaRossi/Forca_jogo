@@ -18,7 +18,7 @@ body{
     flex-direction: column;
 }
 #imagem{
-    background-image: ;
+    background-image: url("img/");
     width: 234px;
     height: 272px;
     background-repeat: no-repeat;
