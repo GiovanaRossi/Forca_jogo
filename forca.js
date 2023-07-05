@@ -7,59 +7,59 @@ const palavras = [
     palavra1 = {
         nome: "LEOPARDO",
         categoria: "ANIMAL"
-    }
+    },
     palavra2 = {
         nome: "RINOCERONTE",
         categoria: "ANIMAL"
-    }
+    },
     palavra3 = {
         nome: "ADDAX",
         categoria: "ANIMAL"
-    }
+    },
     palavra4 = {
         nome: "JAPÃO",
         categoria: "PAÍSES"
-    }
+    },
     palavra5 = {
         nome: "CANADÁ",
         categoria: "PAÍSES"
-    }
+    },
     palavra6 = {
         nome: "BUTÃO",
         categoria: "PAÍSES"
-    }
+    },
     palavra7 = {
         nome: "PARALELEPÍPEDO",
         categoria: "OBJETOS"
-    }
+    },
     palavra8 = {
         nome: "ÓCULOS",
         categoria: "OBJETOS"
-    }
+    },
     palavra9 = {
         nome: "MODEM",
         categoria: "OBJETOS"
-    }
+    },
     palavra10 = {
         nome: "JUMANJI",
         categoria: "FILMES"
-    }
+    },
     palavra11 = {
         nome: "RAMBO",
         categoria: "FILMES"
-    }
+    },
     palavra12 = {
         nome: "OPERAÇÃO ANTHROPOID",
         categoria: "FILMES"
-    }
+    },
     palavra13 = {
         nome: "ZADOCK",
         categoria: "NOMES"
-    }
+    },
     palavra14 = {
         nome: "AZIEL",
         categoria: "NOMES"
-    }
+    },
     palavra15 = {
         nome: "ROWAN",
         categoria: "NOMES"
@@ -83,14 +83,30 @@ function montar(){
 
     const palavraTela = document.getElementById("palavra-secreta");
     palavraTela.innerHTML = "";
-
+    console.log(Random)
     for(i = 0; i < Random.length; i++){
         if (lista[i] == undefined){
-            lista[i] = "&nbsp;"
-            palavraTela.innerHTML =  palavraTela.innerHTML + "<div class= 'letras'>" + lista[i] + "</div>"
+            if (Random[i] == " "){
+                lista[i]=" ";
+                palavraTela.innerHTML =  palavraTela.innerHTML + "<div class= 'letrasEspaco'>" + lista[i] + "</div>"
+            }
+            else{
+                lista[i] = "&nbsp;"
+                palavraTela.innerHTML =  palavraTela.innerHTML + "<div class= 'letras'>" + lista[i] + "</div>"
+            }
+
+            
         }
         else{
-            palavraTela.innerHTML =  palavraTela.innerHTML + "<div class= 'letras'>" + lista[i] + "</div>"
+            
+            if (Random[i] == " "){
+                lista[i]=" ";
+                palavraTela.innerHTML =  palavraTela.innerHTML + "<div class= 'letrasEspaco'>" + lista[i] + "</div>"
+            }
+            else{
+                palavraTela.innerHTML =  palavraTela.innerHTML + "<div class= 'letras'>" + lista[i] + "</div>"
+            }
+            console.log(lista)
         }
     }
 }
@@ -119,7 +135,7 @@ function comparalistas(letra){
         imgForca();
 
         if(tentativas == 0){
-            abreModal();
+            abreModal("Você Perdeu!!", "A morte está rindo da sua cara 🤣... A palavra era <br>" + Random);
         }
     }
     else{
@@ -137,7 +153,7 @@ function comparalistas(letra){
         }
     }
     if(win == true){
-        //mensagem na tela
+        abreModal("PARABÉNS!!!", " Você não é burro!!!");
         tentativas = 0;
     }
 }
@@ -168,10 +184,19 @@ function imgForca(){
 
     }
 }
+    function abreModal( titulo, mensagem){
+        let modalTitulo = document.getElementById("exampleModalLabel");
+        modalTitulo.innerText = titulo;
+    
+        let modalBody = document.getElementById("modalBody");
+        modalBody.innerHTML = mensagem;
+    }
 
-function abreModal(){
     $("#myModal").modal({
-        show = true
+        show : true
     });
 
-}
+    let btnReiniciar = document.querySelector("#btnReiniciar");
+    btnReiniciar.addEventListener("click", function(){
+    location.reload();
+});
