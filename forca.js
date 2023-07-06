@@ -129,7 +129,7 @@ function mudarStyleLetra(tecla){
 }
 
 function comparalistas(letra){
-    const pos = Random.indeOf(letra)
+    const pos = Random.indeOf(letra);
     if(pos < 0){
         tentativas--
         imgForca();
@@ -190,13 +190,14 @@ function imgForca(){
     
         let modalBody = document.getElementById("modalBody");
         modalBody.innerHTML = mensagem;
-    }
 
-    $("#myModal").modal({
+        $("#myModal").modal({
         show : true
-    });
-
+        });
+    
+    }
     let btnReiniciar = document.querySelector("#btnReiniciar");
     btnReiniciar.addEventListener("click", function(){
     location.reload();
-});
+    });
+    
