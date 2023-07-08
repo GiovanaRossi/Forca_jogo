@@ -117,9 +117,7 @@ function verificaLetra(letra){
         comparalistas(letra);
         montarPalavra();
 
-        if(tentativas == 0){
-            abreModal("Você Perdeu!!", "A morte está rindo da sua cara 🤣... A palavra era <br>" + Random);
-        }
+        
     }
         else{
             for( i = 0; i < Random.length; i++){
@@ -142,6 +140,10 @@ function comparalistas(letra){
     if(pos < 0){
         tentativas--
         imgForca();
+        
+        if(tentativas == 0){
+            abreModal("Você Perdeu!!", "A morte está rindo da sua cara 🤣... A palavra era <br>" + Random);
+        }
 
     }
     else{
@@ -155,11 +157,12 @@ function comparalistas(letra){
     let win = true;
     for(i = 0; i < Random.length; i++){
         if(Random[i] != lista[i]){
-        win = false; 
+            win = false; 
         }
     }
 
-    if(win == true){
+    if(win == true)
+    {
         abreModal("PARABÉNS!!!", " Você não é burro!!!");
         tentativas = 0;
     }
@@ -193,7 +196,7 @@ function imgForca(){
     }
 }
 
-function abreModal( titulo, mensagem){
+function abreModal(titulo, mensagem){
     let modalTitulo = document.getElementById("exampleModalLabel");
     modalTitulo.innerText = titulo;
 
@@ -201,7 +204,7 @@ function abreModal( titulo, mensagem){
     modalBody.innerHTML = mensagem;
 
     $("#myModal").modal({
-    show : true
+    show: true
     });
 
 }
