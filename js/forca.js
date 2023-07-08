@@ -17,15 +17,15 @@ const palavras = [
         categoria: "ANIMAL"
     },
     palavra4 = {
-        nome: "JAPAO",
+        nome: "JAPÃO",
         categoria: "PAÍSES"
     },
     palavra5 = {
-        nome: "CANADA",
+        nome: "CANADÁ",
         categoria: "PAÍSES"
     },
     palavra6 = {
-        nome: "BUTAO",
+        nome: "BUTÃO",
         categoria: "PAÍSES"
     },
     palavra7 = {
@@ -69,44 +69,43 @@ const palavras = [
 criarPalavra();
 function criarPalavra(){
     const indexPalavras = parseInt(Math.random()* palavras.length)
-
-    Categoria = palavras[indexPalavras].categoria;
+    
     Random = palavras[indexPalavras].nome;
+    Categoria = palavras[indexPalavras].categoria;
     console.log(Categoria)
     console.log(Random)
 }
 
-montar();
-function montar(){
+montarPalavra();
+function montarPalavra(){
     const categoria = document.getElementById("categoria");
     categoria.innerHTML = Categoria;
 
     const palavraTela = document.getElementById("palavra-secreta");
     palavraTela.innerHTML = "";
+
     console.log(Random)
+
     for(i = 0; i < Random.length; i++){
         if (lista[i] == undefined){
-            if (Random[i] == " "){
-                lista[i]=" ";
+            if(Random[i] == " "){
+                lista[i]= " ";
                 palavraTela.innerHTML =  palavraTela.innerHTML + "<div class= 'letrasEspaco'>" + lista[i] + "</div>"
             }
             else{
-                lista[i] = "&nbsp;"
+                 lista[i]="&nbsp";
                 palavraTela.innerHTML =  palavraTela.innerHTML + "<div class= 'letras'>" + lista[i] + "</div>"
             }
-
-            
+   
         }
         else{
-            
-            if (Random[i] == " "){
-                lista[i]=" ";
+            if(Random[i] == " "){
+                lista[i]= " ";
                 palavraTela.innerHTML =  palavraTela.innerHTML + "<div class= 'letrasEspaco'>" + lista[i] + "</div>"
             }
             else{
                 palavraTela.innerHTML =  palavraTela.innerHTML + "<div class= 'letras'>" + lista[i] + "</div>"
             }
-            console.log(lista)
         }
     }
 }
@@ -116,88 +115,98 @@ function verificaLetra(letra){
     if(tentativas > 0){
         mudarStyleLetra("tecla-" + letra);
         comparalistas(letra);
-        montar();
+        montarPalavra();
+
+        if(tentativas == 0){
+            abreModal("Você Perdeu!!", "A morte está rindo da sua cara 🤣... A palavra era <br>" + Random);
+        }
+    }
+        else{
+            for( i = 0; i < Random.length; i++){
+                if(Random[i] == letra){
+                lista[i] = letra;
+                }
+            }
+        }
 
     }
-    
-}
+
 
 function mudarStyleLetra(tecla){
     document.getElementById(tecla).style.background = "#1E90FF";
     document.getElementById(tecla).style.color = "#ffffff";
 
 }
-
 function comparalistas(letra){
-    const pos = Random.indeOf(letra);
+    const pos = Random.indexOf(letra);
     if(pos < 0){
         tentativas--
         imgForca();
 
-        if(tentativas == 0){
-            abreModal("Você Perdeu!!", "A morte está rindo da sua cara 🤣... A palavra era <br>" + Random);
-        }
     }
     else{
-        for( i = 0; i < Random.length; i++){
+        for(i = 0; i < Random.length; i++)
+        {
             if(Random[i] == letra){
                 lista[i] = letra;
             }
         }
     }
-
     let win = true;
     for(i = 0; i < Random.length; i++){
         if(Random[i] != lista[i]){
-            win = false; 
+        win = false; 
         }
     }
+
     if(win == true){
         abreModal("PARABÉNS!!!", " Você não é burro!!!");
         tentativas = 0;
     }
+
 }
 
 function imgForca(){
     switch(tentativas){
         case 5:
-            document.getElementById("imagem").style.background = "url('./img/forca01.png')";
+            document.getElementById("img").style.background = "url('./img/forca01.png')" ;
             break;
         case 4:
-            document.getElementById("imagem").style.background = "url('./img/forca02.png')";
+            document.getElementById("img").style.background = "url('./img/forca02.png')";
             break;
         case 3:
-            document.getElementById("imagem").style.background = "url('./img/forca03.png')";
+            document.getElementById("img").style.background = "url('./img/forca03.png')";
             break;
         case 2:
-            document.getElementById("imagem").style.background = "url('./img/forca04.png')";
+            document.getElementById("img").style.background = "url('./img/forca04.png')";
             break;
         case 1:
-            document.getElementById("imagem").style.background = "url('./img/forca05.png')";
+            document.getElementById("img").style.background = "url('./img/forca05.png')";
             break;
         case 0:
-            document.getElementById("imagem").style.background = "url('./img/forca06.png')";
+            document.getElementById("img").style.background = "url('./img/forca06.png')";
             break;
         default:
-            document.getElementById("imagem").style.background = "url('./img/forca.png')";
+            document.getElementById("img").style.background = "url('./img/forca.png')";
             break;
 
     }
 }
-    function abreModal( titulo, mensagem){
-        let modalTitulo = document.getElementById("exampleModalLabel");
-        modalTitulo.innerText = titulo;
-    
-        let modalBody = document.getElementById("modalBody");
-        modalBody.innerHTML = mensagem;
 
-        $("#myModal").modal({
-        show : true
-        });
-    
-    }
-    let btnReiniciar = document.querySelector("#btnReiniciar");
-    btnReiniciar.addEventListener("click", function(){
-    location.reload();
+function abreModal( titulo, mensagem){
+    let modalTitulo = document.getElementById("exampleModalLabel");
+    modalTitulo.innerText = titulo;
+
+    let modalBody = document.getElementById("modalBody");
+    modalBody.innerHTML = mensagem;
+
+    $("#myModal").modal({
+    show : true
     });
-    
+
+}
+
+let btnReiniciar = document.querySelector("#btnReiniciar");
+btnReiniciar.addEventListener("click", function(){
+location.reload();
+});
