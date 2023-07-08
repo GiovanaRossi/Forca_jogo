@@ -17,23 +17,23 @@ const palavras = [
         categoria: "ANIMAL"
     },
     palavra4 = {
-        nome: "JAPÃO",
+        nome: "JAPAO",
         categoria: "PAÍSES"
     },
     palavra5 = {
-        nome: "CANADÁ",
+        nome: "CANADA",
         categoria: "PAÍSES"
     },
     palavra6 = {
-        nome: "BUTÃO",
+        nome: "BUTAO",
         categoria: "PAÍSES"
     },
     palavra7 = {
-        nome: "PARALELEPÍPEDO",
+        nome: "PARALELEPIPEDO",
         categoria: "OBJETOS"
     },
     palavra8 = {
-        nome: "ÓCULOS",
+        nome: "OCULOS",
         categoria: "OBJETOS"
     },
     palavra9 = {
